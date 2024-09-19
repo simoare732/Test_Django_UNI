@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %} Search page form {% endblock %}
+
+{% block content %}
+    <h1>Search page</h1>
+
+    <form action = "{% url 'polls:search' %}" method="POST">{% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Search">
+    </form>
+{% endblock %}

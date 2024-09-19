@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} Chat page {% endblock %}
+
+{% block content %}
+    <h1>{{ msg }}</h1>
+
+    <label for="username">Username:</label>
+    <input type="text" name="username" id="username"> <br> <br>
+    <label for="msg">Messaggio:</label>
+    <input type="text" name="msg" id="msg"> <br> <br>
+
+    <p>Chatlog:</p>
+
+    <textarea id="chatlog" rows="20" cols="50"></textarea>
+
+    <br>
+    <input type="button" id="btn" value="Chatta">
+
+    <script>
+        //var socket = new WebSocket('ws://127.0.0.1:8000/ws/chatws');
+        //console.log('JS letto');
+        /*socket.onmessage = function(event) {
+            var data = event.data;
+            var d = document.getElementById("chatlog");
+            d.value = data + '\r\n';
+            //console.log('Connection established');
+        }*/
+        var socket = new WebSocket('ws://127.0.0.1:8000/ws/chatws');
+        socket.onmessage = function(event) {
+            var chatlog = document.getElementById('chatlog');
+            chatlog.value += event.data + '\n';
+        };
+
+
+        var b = document.getElementById('btn');
+        b.onclick = btnClick;
+
+        function btnClick(){
+            var obj = new Object();
+            obj.user = document.querySelector("#username").value;
+            obj.msg = document.querySelector("#msg").value;
+            var string = JSON.stringify(obj);
+            socket.send(string);
+            document.querySelector('#username').disabled = true;
+            document.querySelector('#msg').value = '';
+            //console.log('bottone cliccato');
+
+        }
+
+        var intervalId = setInterval(function(){
+            socket.send('UPDATE')
+        }, 1);
+    </script>
+{% endblock %}

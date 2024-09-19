@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %} Searched page {% endblock %}
+
+{% block content %}
+    <h1>What I found!</h1>
+    {% for i in object_list %}
+        <li><a href="{% url 'polls:detail' pk=i.pk %}">{{ i }}</a></li>
+        <ol>
+            {% for c in i.choices.all %}
+                <li>{{ c }}</li>
+            {% endfor %}
+        </ol>
+    {% endfor %}
+{% endblock %}
