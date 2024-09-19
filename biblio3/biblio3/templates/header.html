@@ -1,0 +1,26 @@
+<div class="text-center py-3" style="background-color: #cccccc">
+    <h1 class="text-black">
+        {% block header_title %}Home di Gestione{% endblock %}
+    </h1>
+    <br>
+    <p>
+        {% block header_subtitle %}Benvenuto utente non registrato{% endblock %}
+    </p>
+</div>
+<br>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Biblio3</a>
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+        {% block header_nav %}
+            <li class="nav-item {% if request.path == '/gestione/libri' %}active{% endif %}">
+                <a class="nav-link" href="/gestione/libri">Lista dei libri</a>
+            </li>
+            <li class="nav-item {% if request.path == '/gestione/search' %}active{% endif %}">
+                <a class="nav-link" href="/gestione/search/">Cerca un libro</a>
+            </li>
+        {% endblock %}
+        </ul>
+    </div>
+</nav>

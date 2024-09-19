@@ -1,0 +1,22 @@
+<footer class="footer-spacing">
+    <div class="container py-3 bg-light" >
+        <div class="row justify-content-center">
+            <div class="col-2">
+                <a href="{% url 'register' %}" class="btn btn-primary btn-block btn-custom">Registrati</a>
+            </div>
+            <div class="col-2">
+                {% if user.is_authenticated %}
+                    <form method="POST" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary btn-block btn-custom">Logout</button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'login' %}" class="btn btn-primary btn-block btn-custom">Login</a>
+                {% endif %}
+            </div>
+            <div class="col-3">
+                <button class="btn btn-primary btn-block btn-admin">Admin login</button>
+            </div>
+        </div>
+    </div>
+</footer>

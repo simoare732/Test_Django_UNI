@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %} Homepage {% endblock %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block head %}
+    {% block extra_head %}
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+            <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    {% endblock %}
+{% endblock %}
+
+{% block header1 %}
+    <div class="text-center py-3" style="background-color: #cccccc">
+        <h1 class="text-black">Home di Gestione</h1>
+        <br>
+        <p>Benvenuto utente non registrato</p>
+    </div>
+    <br>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Biblio3</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item {% if request.path == '/gestione/libri' %}active{% endif %}">
+                    <a class="nav-link" href="/gestione/libri">Lista dei libri</a>
+                </li>
+                <li class="nav-item {% if request.path == '/gestione/search' %}active{% endif %}">
+                    <a class="nav-link" href="/gestione/search/">Cerca un libro</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+{% endblock %}
+
+{% block content %}
+    <div class="wrapper">
+        <div class="content">
+            <div class="text-center text-dark py-3">
+                <h2>Cosa vuoi fare oggi?</h2>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <a href="/gestione/search" class="btn btn-primary btn-block custom-btn">Cerca un libro</a>
+                </div>
+                <div class="row">
+                    <a href="/gestione/libri" class="btn btn-primary btn-block custom-btn">Lista dei libri</a>
+                </div>
+            </div>
+        </div>
+        {% include 'footer.html' %}
+    </div>
+
+
+{% endblock %}

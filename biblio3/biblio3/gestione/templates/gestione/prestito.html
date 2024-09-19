@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %} Prestito {% endblock %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block head %}
+    {% block extra_head %}
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+            <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    {% endblock %}
+{% endblock %}
+
+{% block header1 %}
+    <div class="text-center py-3" style="background-color: #cccccc">
+        <h1 class="text-black">Prestito</h1>
+        <br>
+        {% if user.is_authenticated %}
+            <p>Benvenuto {{ user.username }}</p>
+        {% else %}
+            <p>Benvenuto utente non registrato</p>
+        {% endif %}
+    </div>
+    <br>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Prestito</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item {% if request.path == '/gestione/libri' %}active{% endif %}">
+                    <a class="nav-link" href="/gestione/libri">Lista dei libri</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+{% endblock %}
+
+{% block content %}
+    <div class="text-center text-dark py-3">
+        <h2>Hai preso in prestito {{ libro.titolo }} di {{ libro.autore }}</h2>
+        <h5>in data {{ copia.data_prestito }}</h5>
+    </div>
+
+    {% include 'footer.html' %}
+
+{% endblock %}

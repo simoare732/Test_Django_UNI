@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %} Cerca studente {% endblock %}
+
+{% block content %}
+    <div style="text-align: center;">
+        <h1>Cerca uno studente</h1>
+        <form action="/iscrizioni/cercastudente/" method="post">{% csrf_token %}
+            <label for="name">Nome studente:</label>
+            <input type="text" id="name" name="name"> <br>
+            <label for="surname">Cognome studente</label>
+            <input type="text" id="surname" name="surname">
+            <input type="submit" value="Cerca">
+        </form>
+    </div>
+{% endblock %}

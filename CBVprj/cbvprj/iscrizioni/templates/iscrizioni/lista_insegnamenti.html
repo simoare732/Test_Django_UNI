@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block content %}
+    <h1>{{ title }}</h1>
+
+    {% for p in object_list %}
+        <p>{{ p }}</p>
+        <ul>
+            {% if p.studenti.all %}
+                {% for s in p.studenti.all %}
+                    <li>{{ s }}</li>
+                {% endfor %}
+            {% else %}
+                <p>Nessuno studente iscritto</p>
+            {% endif %}
+        </ul>
+    {% endfor %}
+{% endblock %}

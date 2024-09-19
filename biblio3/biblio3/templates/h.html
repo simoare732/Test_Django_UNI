@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block title %} Home {% endblock %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block head %}
+    {% block extra_head %}
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+            <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    {% endblock %}
+{% endblock %}
+
+{% block header1 %}
+    <div class="text-center py-3" style="background-color: #cccccc">
+        <h1 class="text-black">Home</h1>
+        <br>
+        <p>Benvenuto</p>
+    </div>
+    <br>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Biblio3</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item {% if request.path == '/gestione/' %}active{% endif %}">
+                    <a class="nav-link" href="/gestione/">Gestione</a>
+                </li>
+                <li class="nav-item {% if request.path == '/gestione/libri' %}active{% endif %}">
+                    <a class="nav-link" href="/gestione/libri">Lista dei libri</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+{% endblock %}
+
+{% block content %}
+    <div class="text-center text-dark py-3">
+        <h2>Homepage di Biblio</h2>
+    </div>
+
+    {% if user.is_authenticated and login_ok %}
+
+        <div id="modal" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Welcome {{ user.username }}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>La procedura di login è andata a buon fine</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Chiudi</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function() {
+                $('#modal').modal('show');
+            });
+        </script>
+    {% endif %}
+
+    <div class="text-center">
+        <img src="{% static 'imgs/biblioteca.jpg' %}" alt="Immagine libri" class="img-fluid" style="max-width: 50%; height: auto;">
+    </div>
+
+
+    {% include 'footer.html' %}
+{% endblock %}
