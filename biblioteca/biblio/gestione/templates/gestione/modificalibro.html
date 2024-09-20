@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block head %} {% endblock %}
+
+{% block title %} {{title}} {% endblock %}
+
+{%block content%}
+
+    <center>
+        <h1>{{title}}</h1>
+
+        {% if message == "" %}
+
+            <form method="POST">
+                {% csrf_token %}
+                <label for="autore">Autore:</label><br>
+                <input type="text" id="autore" name="autore" value="{{libro.autore}}" ><br>
+                <label for="titolo">Titolo:</label><br>
+                <input type="text" id="titolo" name="titolo" value="{{libro.titolo}}"><br>
+                <label for="pagine">Pagine:</label><br>
+                <input type="text" id="pagine" name="pagine" value="{{libro.pagine}}"><br><br>
+                <input type="submit" value="Modifica">
+            </form> 
+
+        {% else %}
+
+            <p> {{message}} </p>
+            <a href="{% url 'gestione:listalibri' %}">Lista Libri</a>
+
+        {% endif %}
+
+    </center>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block head %}
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href='{% static "/css/style.css" %}'>
+
+{% endblock %}
+
+{% block title %} {{title}} {% endblock %}
+
+{% block content %}
+
+<center>
+    <img src="{% static '/imgs/django.png' %}" alt="django and python">
+
+    <footer>
+        <p><a href="https://www.w3schools.com/css/">Link utili</a></p>
+
+    </footer>
+</center>
+    
+{% endblock %}

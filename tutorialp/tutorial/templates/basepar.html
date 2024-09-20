@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %} Params {% endblock %}
+
+{% block content %}
+
+    <p>Ciao {{nome|truncatechars:3}}</p>
+
+    {% include "includefooter.html" %}
+    
+{% endblock %}

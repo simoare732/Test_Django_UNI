@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %} Persona {% endblock %}
+
+{% block content %}
+
+    {% for i in object_list %}
+        {{i.pk}} - {{i.nome}} {{i.cognome}} <br>
+    {% endfor %}
+
+{% endblock %}
